@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const path = require("path");
+
 const Employee = require("../models/employee")
 
 
@@ -61,6 +63,27 @@ router.get("/getActiveEmp",function(req,res){
         res.send(err)
     })
 })
+
+router.post("/imageupload",function(req,res){
+    const filName = req.files.profilepic.name;
+    const fileData = req.files.profilepic;
+    const uploadPath = path.join(__dirname,"../","uploads")
+    fileData.mv(uploadPath + "/"+filName,function(err,data){
+        if(err)
+        return res.send(err)
+        res.send("file uploaded successfully")
+    })
+})
+
+
+// req.body--
+// req.files--
+// req.params
+
+
+
+// 1> upload file and save in local folder 
+// 2> uplaod file and save in cloud--from cloud you will get url that url need to save in ddb
 
 
 
