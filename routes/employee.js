@@ -1,11 +1,7 @@
 const express = require("express");
-
 const router = express.Router();
-
 const path = require("path");
-
 const Employee = require("../models/employee")
-
 
 // create employee data in db 
 
@@ -13,7 +9,6 @@ router.post("/createEmployee",function(req,res){
     let {empName,age,address,company} = req.body
     let emp = new Employee({empName,age,address,company,status:true})
     console.log(emp)
-
     emp.save().then(function(data){
         res.send(data)
     }).catch(function(err){
@@ -79,18 +74,9 @@ router.post("/imageupload",function(req,res){
 // req.body--
 // req.files--
 // req.params
-
-
-
 // 1> upload file and save in local folder 
 // 2> uplaod file and save in cloud--from cloud you will get url that url need to save in ddb
-
-
-
-
 //employee/deleteEmp/647618fa9289b4ba6f661876
-
-
 
 module.exports = router
 
